@@ -30,9 +30,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+MIDDLEWARE_PERFORMANCE_METRICS_FILE = BASE_DIR + "/perf-metrics/req-resp-metrics.csv"
+
+
 # Application definition
 
 INSTALLED_APPS = [
+    'performance_metrics_middleware',
     'music.apps.MusicConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'performance_metrics_middleware.PerformanceMetrics.PerformanceMetricsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'ambabu',
-        'PASSWORD': 'testdb',
+        'USER': 'nick',
+        'PASSWORD': 'nick',
         'HOST': 'localhost',
         'PORT': '5432'
 
